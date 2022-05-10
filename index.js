@@ -18,6 +18,7 @@ $(document).keypress(function() {
 // user click
 $("div.btn").click(function(evt) {
   var userChoosenColor = $(evt.target).attr("id");
+  //var userChoosenColor = $(this).attr("id");
   userClickedPattern.push(userChoosenColor);
 
   animatePress(evt.target);
@@ -63,5 +64,20 @@ function checkAnswer(currentLevel) {
 
   } else {
     console.log("wrong");
+    playSound("wrong");
+
+    $("body").addClass("game-over");
+    setTimeout(function(){
+      $("body").removeClass("game-over");
+    }, 200);
+
+    $("h1#level-title").text("Game Over, press any key to restart");
+
+    startOver();
   }
+}
+function startOver(){
+  levelNumber = 0;
+  started = false;
+  gamePattern = [];
 }
